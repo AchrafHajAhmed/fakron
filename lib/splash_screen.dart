@@ -1,8 +1,7 @@
-import 'package:fakron/main.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:fakron/color.dart'; // Import de votre classe de couleurs
+import 'package:fakron/color.dart';
 import 'package:fakron/puzzle.dart';
 import 'onboarding_screen.dart';
 
@@ -35,21 +34,21 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // Deux logos alignés en haut
+
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 ClipOval(
                   child: Image.asset(
-                    'assets/oasis.jpg', // Chemin de votre premier logo
+                    'assets/oasis.jpg',
                     width: 150,
                     height: 150,
-                    fit: BoxFit.cover, // Adapter l'image dans le cercle
+                    fit: BoxFit.cover,
                   ),
                 ),
                 ClipOval(
                   child: Image.asset(
-                    'assets/wwf.jpg', // Chemin de votre deuxième logo
+                    'assets/wwf.jpg',
                     width: 150,
                     height: 150,
                     fit: BoxFit.cover,

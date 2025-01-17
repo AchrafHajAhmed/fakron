@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'splash_screen.dart';
 import 'color.dart';
+import 'package:fakron/widget/button.dart';
+import 'splash_screen.dart';
 
 class OnboardingScreen extends StatefulWidget {
   @override
@@ -12,9 +13,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   int _currentPage = 0;
 
   final List<String> onboardingTexts = [
-    ".مرحبا بكم في لعبة السلحفاة البحرية. هدف اللعبة هو الوصول إلى السلحفاة قبل الفرق الأخر",
+    "مرحبا بكم في لعبة الفكرون. هدف اللعبة هو الوصول إلى السلحفاة قبل الفرق الأخرى.",
     "اللعبة تعتمد على الإجابة عن الأسئلة المختلفة لتحصيل النقاط.",
-    "يتوجب على الفرق التعاون والعمل الجماعي لتجاوز التحديات.",
+    "يتوجب على الفريق التعاون والعمل الجماعي لتجاوز التحديات.",
     "استخدموا البطاقات السحرية بحذر، فهي متاحة مرة واحدة فقط خلال اللعبة.",
     "ابدؤوا الآن واستمتعوا بتجربة تعليمية وترفيهية ممتعة!"
   ];
@@ -22,7 +23,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   void _onSkipOrStart() {
     Navigator.pushReplacement(
       context,
-      MaterialPageRoute(builder: (context) => const SplashScreen()), // Remplacez par l'écran de votre choix
+      MaterialPageRoute(builder: (context) => SplashScreen()),
     );
   }
 
@@ -50,7 +51,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             right: 20,
             child: Column(
               children: [
-                // Pagination
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: List.generate(
@@ -59,19 +59,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   ),
                 ),
                 const SizedBox(height: 20),
-                // Skip or Start Button
-                ElevatedButton(
+                MyButton(
+                  text: _currentPage == onboardingTexts.length - 1 ? "ابدأ" : "تخطي",
                   onPressed: _onSkipOrStart,
-                  style: ElevatedButton.styleFrom(
-                    padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 15),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                  ),
-                  child: Text(
-                    _currentPage == onboardingTexts.length - 1 ? "ابدأ" : "تخطي",
-                    style: const TextStyle(fontSize: 16),
-                  ),
                 ),
               ],
             ),
@@ -109,16 +99,33 @@ class OnboardingContent extends StatelessWidget {
     return Container(
       color: backgroundColor,
       padding: const EdgeInsets.all(20.0),
-      child: Center(
-        child: Text(
-          text,
-          textAlign: TextAlign.center,
-          style: const TextStyle(
-            fontSize: 20,
-            height: 1.5,
-            color: Colors.black87,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(top: 40.0),
+            child: Image.asset(
+              'assets/onboarding.png',
+              width: 200,
+              height: 200,
+              fit: BoxFit.contain,
+            ),
           ),
-        ),
+          const SizedBox(height: 20),
+          Expanded(
+            child: Center(
+              child: Text(
+                text,
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                  fontSize: 20,
+                  height: 1.5,
+                  color: Colors.black87,
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

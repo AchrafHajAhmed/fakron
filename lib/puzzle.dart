@@ -2,13 +2,13 @@ import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 
 class PuzzleWidget extends StatefulWidget {
-  final String imagePath; // Chemin de l'image
-  final int gridSize; // Taille de la grille (par ex. 3 pour 3x3)
+  final String imagePath;
+  final int gridSize;
 
   const PuzzleWidget({
     Key? key,
     required this.imagePath,
-    this.gridSize = 3, // Par défaut, une grille 3x3
+    this.gridSize = 3,
   }) : super(key: key);
 
   @override
@@ -30,7 +30,7 @@ class _PuzzleWidgetState extends State<PuzzleWidget> {
     final image = await _loadImage(widget.imagePath);
     final pieceSize = image.width ~/ widget.gridSize;
 
-    // Découper l'image en morceaux
+
     for (int row = 0; row < widget.gridSize; row++) {
       for (int col = 0; col < widget.gridSize; col++) {
         pieces.add(await _cropImage(
@@ -47,7 +47,7 @@ class _PuzzleWidgetState extends State<PuzzleWidget> {
 
     setState(() {
       positions = List.generate(pieces.length, (index) => index);
-      positions.shuffle(); // Mélanger les positions
+      positions.shuffle();
       isImageLoaded = true;
     });
   }
@@ -120,14 +120,14 @@ class _PuzzleWidgetState extends State<PuzzleWidget> {
         final pieceIndex = positions[index];
         return GestureDetector(
           onTap: () {
-            // Permuter avec une pièce adjacente
-            final emptyIndex = positions.indexOf(pieces.length - 1); // Pièce vide
+
+            final emptyIndex = positions.indexOf(pieces.length - 1);
             if ((index - emptyIndex).abs() == 1 || (index - emptyIndex).abs() == widget.gridSize) {
               _swapPieces(index, emptyIndex);
             }
           },
           child: pieces[pieceIndex] == null
-              ? Container(color: Colors.white) // Pièce vide
+              ? Container(color: Colors.white)
               : CustomPaint(
             size: Size(100, 100),
             painter: ImagePainter(pieces[pieceIndex]!),
