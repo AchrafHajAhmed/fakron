@@ -36,6 +36,17 @@ dependencies:
   cupertino_icons: ^1.0.8
   provider: ^6.1.2
   flutter_launcher_icons: ^0.14.2
+  audioplayers: ^6.1.0
+  easy_puzzle_game: ^0.0.2
+  gap: ^2.0.2
+  sqflite: ^2.4.1
+  path: ^1.9.0
+  auto_size_text: ^3.0.0
+  flutter_svg: ^2.0.17
+  intl: ^0.20.1
+  pie_chart: ^5.4.0
+  flutter_layout_grid: ^2.0.7
+  sliver_tools: ^0.2.12
 
 dev_dependencies:
   flutter_test:
@@ -46,9 +57,9 @@ flutter_launcher_icons:
   ios: true
   remove_alpha_ios: true
   image_path: "assets/logo.png"
-  min_sdk_android: 24 # android min sdk min:16, default 21
-  adaptive_icon_background: "#ffffff" # You can use a color or image for the background
-  adaptive_icon_foreground: "assets/logo.png" # For adaptive icons on Android
+  min_sdk_android: 24
+  adaptive_icon_background: "#ffffff"
+  adaptive_icon_foreground: "assets/logo.png"
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
@@ -70,9 +81,20 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-   - assets/oasis.jpg
-   - assets/wwf.jpg
-   - assets/onboarding.png
+   - assets/images/oasis.jpg
+   - assets/images/wwf.jpg
+   - assets/images/onboarding.png
+   - assets/blocks/
+   - assets/images/logo.png
+   - assets/question1/piece1.jpg
+   - assets/question1/piece2.jpg
+   - assets/question1/piece3.jpg
+   - assets/question1/piece4.jpg
+   - assets/question1/piece5.jpg
+   - assets/question1/piece6.jpg
+   - assets/question1/piece7.jpg
+   - assets/question1/piece8.jpg
+   - assets/question1/piece9.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
