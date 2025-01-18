@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fakron/color.dart';
-import 'package:fakron/puzzle.dart';
 import 'onboarding_screen.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -55,13 +54,6 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
                   ),
                 ),
               ],
-            ),
-            const SizedBox(height: 50),
-            Center(
-              child: PuzzleWidget(
-                imagePath: 'assets/oasis.jpg',
-                gridSize: 3, // Grille 3x3
-              ),
             ),
           ],
         ),

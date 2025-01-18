@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'color.dart';
 import 'package:fakron/widget/button.dart';
 import 'splash_screen.dart';
+import 'home.dart';
 
 class OnboardingScreen extends StatefulWidget {
   @override
@@ -23,7 +24,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   void _onSkipOrStart() {
     Navigator.pushReplacement(
       context,
-      MaterialPageRoute(builder: (context) => SplashScreen()),
+      MaterialPageRoute(builder: (context) => acceuil()),
     );
   }
 
