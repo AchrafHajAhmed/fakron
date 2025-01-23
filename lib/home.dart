@@ -1,10 +1,7 @@
-import 'package:fakron/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'color.dart';
 import 'questions/question1.dart';
-import 'questions/question2.dart';
-import 'package:fakron/widget/puzzle.dart';
 
 class acceuil extends StatefulWidget {
   const acceuil({Key? key}) : super(key: key);
@@ -17,7 +14,6 @@ class _acceuilState extends State<acceuil> {
   int currentQuestionClassIndex = 0;
   late Map<String, Object> currentQuestion;
   String feedbackMessage = '';
-  bool showPuzzle = false;
 
   final List<Function> questionClasses = [
     Question1.getRandomQuestion,
@@ -33,7 +29,6 @@ class _acceuilState extends State<acceuil> {
     _audioPlayer = AudioPlayer();
   }
 
-  void _nextQuestion() {
     setState(() {
       feedbackMessage = '';
       currentQuestionClassIndex++;
@@ -44,7 +39,6 @@ class _acceuilState extends State<acceuil> {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => const SplashScreen(),
           ),
         );
       }
@@ -55,39 +49,19 @@ class _acceuilState extends State<acceuil> {
     _audioPlayer.play(AssetSource('assets/song/loser.mp3'));
   }
 
-  void _togglePuzzle() {
-    setState(() {
-      showPuzzle = !showPuzzle;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     final questionText = currentQuestion['question'] as String;
     final options = currentQuestion['options'] as List<String>;
-    final puzzlePieces = currentQuestion['puzzlePieces'] as List<String>;
 
     return Scaffold(
       backgroundColor: AppColors.background,
-      appBar: AppBar(
-        title: Text('السؤال ${currentQuestionClassIndex + 1}'),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.help_outline),
-            onPressed: _togglePuzzle,
-            tooltip: 'بطاقة سحرية',
-          ),
-        ],
-      ),
-      body: SingleChildScrollView(
-        child: Center(
           child: Padding(
             padding: const EdgeInsets.all(20.0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Image.asset(
-                  'assets/images/onboarding.png',
                   width: 150,
                   height: 150,
                 ),
@@ -103,21 +77,6 @@ class _acceuilState extends State<acceuil> {
                 ),
                 const SizedBox(height: 20),
 
-                if (showPuzzle)
-                  Puzzle(
-                    question: questionText,
-                    puzzlePieces: puzzlePieces,
-                    onPuzzleSolved: (message) {
-                      setState(() {
-                        feedbackMessage = message;
-                      });
-                      Future.delayed(const Duration(seconds: 3), () {
-                        _nextQuestion();
-                      });
-                    },
-                  ),
-
-                if (!showPuzzle)
                   ...options.map((option) {
                     return Column(
                       children: [
@@ -136,7 +95,6 @@ class _acceuilState extends State<acceuil> {
                       ],
                     );
                   }).toList(),
-
                 const SizedBox(height: 20),
                 if (feedbackMessage.isNotEmpty)
                   Text(
@@ -152,27 +110,9 @@ class _acceuilState extends State<acceuil> {
             ),
           ),
         ),
-      ),
     );
   }
 
-  void checkAnswer(String selectedAnswer) {
-    final correctAnswer = currentQuestion['answer'] as String;
 
-    setState(() {
-      if (selectedAnswer == correctAnswer) {
-        feedbackMessage = 'إجابة صحيحة! 🎉';
-      } else {
-        feedbackMessage = 'إجابة خاطئة. 😔 الإجابة الصحيحة: $correctAnswer';
-        _playIncorrectAnswerSound();
-      }
-    });
-
-    Future.delayed(const Duration(seconds: 3), () {
-      setState(() {
-        feedbackMessage = '';
-        _nextQuestion();
-      });
-    });
   }
 }
