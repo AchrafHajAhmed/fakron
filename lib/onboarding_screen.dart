@@ -24,7 +24,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   void _onSkipOrStart() {
     Navigator.pushReplacement(
       context,
-      MaterialPageRoute(builder: (context) => acceuil()),
+      MaterialPageRoute(builder: (context) => Acceuil()),
     );
   }
 

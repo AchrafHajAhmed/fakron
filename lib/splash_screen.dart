@@ -39,7 +39,7 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
               children: [
                 ClipOval(
                   child: Image.asset(
-                    'assets/oasis.jpg',
+                    'assets/images/oasis.jpg',
                     width: 150,
                     height: 150,
                     fit: BoxFit.cover,
@@ -47,7 +47,7 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
                 ),
                 ClipOval(
                   child: Image.asset(
-                    'assets/wwf.jpg',
+                    'assets/images/wwf.jpg',
                     width: 150,
                     height: 150,
                     fit: BoxFit.cover,
